@@ -2,6 +2,9 @@
 #define CMD_H
 
 #include "Base.h"
+#include <string>
+
+using namespace std;
 
 class Cmd : public Base {
     private:
