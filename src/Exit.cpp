@@ -4,6 +4,6 @@
 
 Exit::Exit(): Cmd("Exit") {}
 
-bool Eixt::executre() {
+bool Exit::executre() {
     exit(0);
 }
