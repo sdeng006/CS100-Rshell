@@ -23,6 +23,9 @@ Or:
 
 Semicolon:
 	$(CC) $(CFLAGS) ./src/Semicolon.cpp
+	
+Exit:
+	$(CC) $(CFLAGS) ./src/Exit.cpp
 
 clean:
 	rm -rf ./bin
