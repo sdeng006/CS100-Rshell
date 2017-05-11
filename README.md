@@ -16,19 +16,19 @@ Hui Gu (Whitney) - hgu004@ucr.edu
       
       - ";" : would exectue the command before it
       
-    Examples:
+      
+## Examples:
     
         $ ls -a
         $ echo hello
         $ mkdir test
 
-   is equivalent to:
+        is equivalent to:
 
         $ ls -a; echo hello; mkdir test
         
         
-
-  To run the program:
+## To run the program:
   
       - go to terminal
       
