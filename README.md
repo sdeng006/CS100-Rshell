@@ -12,9 +12,13 @@ Hui Gu (Whitney) - hgu004@ucr.edu
   
   To run the program:
       - go to terminal
+      
       - git clone 
+      
       - cd rshell
+      
       - make
+      
       - bin/rshell
       
      
