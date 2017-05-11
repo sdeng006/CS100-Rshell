@@ -42,6 +42,9 @@ Hui Gu (Whitney) - hgu004@ucr.edu
       
       - bin/rshell
       
-     
+## Known bugs
+
+      - The Exit.h and Exit.cpp are not working, so we replace a loop to check if input is "exit" for now
       
+      - The function will display '$' a couple times after the tests file
   
