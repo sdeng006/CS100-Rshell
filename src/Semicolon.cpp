@@ -1,19 +1,28 @@
-#include "Base.h"
+#ifndef SEMICOLON_CPP
+#define SEMICOLON_CPP
+
 #include "Connector.h"
 #include "Semicolon.h"
 
-// Constructors use the same one as Connector their parent's
-Semicolon::Semicolon() : Connector() { }
-
-Semicolon::Semicolon(Base* left) {
-    this -> left = left; }
-
-
-// the semi will execute it no matter left or right side return
-// but running both is needed
-bool Semicolon::execute() {
-    left->execute();
-    //right->execute();
+Semicolon::Semicolon(): Connector() {
     
+}
+
+Semicolon::Semicolon(Base* lhs, Base* rhs): Connector(lhs,rhs) {
+    
+}
+
+void Semicolon::setLeft(Base* lhs) {
+    this->lhs = lhs;
+}
+
+// set right
+void Semicolon::setRight(Base* rhs) {
+    this->rhs = rhs;
+}
+
+bool Semicolon::execute() {
     return true;
 }
+
+#endif
