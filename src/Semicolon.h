@@ -1,14 +1,13 @@
 #ifndef SEMICOLON_H
 #define SEMICOLON_H
 
+#include "Base.h"
 #include "Connector.h"
 
-class Semicolon: public Connector {
+class Semicolon : public Connector {
     public:
         Semicolon();
-        Semicolon(Base* lhs, Base* rhs);
-void setLeft(Base* lhs);
-        void setRight(Base* rhs);
+        Semicolon(Base* left,Base* right);
         bool execute();
 };
 
