@@ -36,6 +36,8 @@ Hui Gu (Whitney) - hgu004@ucr.edu
       
       - cd rshell
       
+      - git checkout hw2
+      
       - make
       
       - bin/rshell
