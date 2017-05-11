@@ -32,7 +32,7 @@ Hui Gu (Whitney) - hgu004@ucr.edu
   
       - go to terminal
       
-      - git clone 
+      - git clone https://github.com/sdeng006/rshell.git
       
       - cd rshell
       
