@@ -81,13 +81,14 @@ int main()
        // cout << "111111" << endl;
         if(v.size() == 2)
         {
-            cmd_v.push_back(v.at(i) + " " + v.at(odd));
+            cmd_v.push_back(v.at(2*i-2) + " " + v.at(odd));
             break;
         }
         else
         {
           //  cout << "enter" << endl;
-            cmd_v.push_back(v.at(i-1) + " " + v.at(odd));
+            cmd_v.push_back(v.at(2*i-2) + " " + v.at(odd));
+          //  cout << "v.at(2*i-2): " << v.at(2*i-2) << endl;
             odd = odd + 2;
         }
     }
@@ -95,7 +96,7 @@ int main()
     
     
     // //check
-    //     cout << "v:" << endl;
+    //   // cout << "v:" << endl;
     // for(unsigned i = 0; i<v.size(); ++i)
     // {
     //     cout << v.at(i) << "   ";
@@ -114,21 +115,20 @@ int main()
     // }
     //     cout<< endl;
     
-     //cout << "cmd size: " << cmd_v.size() << endl;
-    for(unsigned i = 0; i < cmd_v.size()+1; ++i)
+    // //  cout << "cmd size: " << cmd_v.size() << endl;
+    
+    if(cmd_v.size() == 1)
+    {
+        Base* right = new Cmd (cmd_v.at(0));
+            right -> execute();
+    }
+    
+    for(unsigned i = 0; i < cmd_v.size()-1; ++i)
     {
                
-              // cout << "check" << endl;
+               //cout << "check" << endl;
             
-            // if(cmd_v.size() == 1)
-            // {  
-            //     Base* left = new Cmd (cmd_v.at(i));
-            //     Semicolon* sm = new Semicolon(left);
-            //     // cout << "1" << endl;
-            //      sm->execute();
-            //     // cout << "in" << endl;
-            //     break;
-            // }
+ 
             
             // Base* left = new Cmd (cmd_v.at(i));
             // Base* right = new Cmd (cmd_v.at(i+1));
@@ -189,12 +189,14 @@ int main()
     
             if(connect_v.at(i) == ';')
             {
+                    //cout << ";" << endl;
                 Semicolon* sm = new Semicolon(left,right);
                 sm->execute();
             }
             
             else if(connect_v.at(i) == '|')
             {
+                    //cout << "|" << endl;
                connect_v.erase(connect_v.begin()+i);
                 Or* o = new Or(left,right);
                 o -> execute();
@@ -202,6 +204,7 @@ int main()
         
             else if(connect_v.at(i) == '&')
             {
+                 //cout << "&" << endl;
                 connect_v.erase(connect_v.begin()+i);
                 And* a = new And(left,right);
                 a -> execute();
