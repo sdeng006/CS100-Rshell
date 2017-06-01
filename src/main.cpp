@@ -78,7 +78,7 @@ vector<string> makeUnity (const vector<string>& seperated) {
     string unitHolder; // hold units of command and connector
     vector<string> result; // returning result
     
-    for (int i = 0; i < seperated.size(); ++i) {
+    for (unsigned i = 0; i < seperated.size(); ++i) {
         
         // And case and Or case are similar
         if (seperated.at(i) == "&&") {
@@ -112,10 +112,10 @@ vector<string> makeUnity (const vector<string>& seperated) {
         // i has [ location
         else if (seperated.at(i) ==  "[") {
             bool isHere = false; // ] is here?
-            int rhsIndex = -1; // this holds ] location 
+            unsigned rhsIndex; // this holds ] location 
             
             // finding ]
-            for (int a = i; a != seperated.size(); a++) {
+            for (unsigned a = i; a != seperated.size(); a++) {
                 // found!
                 if (seperated.at(a) ==  "]") {
                     rhsIndex = a;
@@ -130,7 +130,7 @@ vector<string> makeUnity (const vector<string>& seperated) {
                 }
             
             // add everything inside [  ] into unit
-            for (int b = i; b <= rhsIndex; b++) {   
+            for (unsigned b = i; b <= rhsIndex; b++) {   
                 unitHolder = unitHolder + seperated.at(b) + " ";
             }
             result.push_back(unitHolder);
