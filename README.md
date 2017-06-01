@@ -44,5 +44,7 @@ Hui Gu (Whitney) - hgu004@ucr.edu
       
 ## Known bugs
   
-    - When using && and ||, the command would execute twice.
+    - Within bracket, if there is no space after the semicolon, then the program would crush.
+    - Within the bracket, if there is semicolon in the bracket, then sometimes the program would crush.
+    - This program could only read 300 words for the command.
     
