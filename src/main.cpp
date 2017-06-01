@@ -101,7 +101,7 @@ vector<string> makeUnity (const vector<string>& seperated) {
         else if (seperated.at(i)[seperated.at(i).size() - 1] == ';') {
             if (unitHolder != BLANK) {
                 unitHolder = unitHolder + seperated.at(i);
-                unitHolder.pop_back();
+                unitHolder.erase((unitHolder.begin() + unitHolder.size() - 1));
                 result.push_back(unitHolder);
                 unitHolder = BLANK;
             }
@@ -168,7 +168,7 @@ vector<string> makeUnity (const vector<string>& seperated) {
                 unitHolder = BLANK;
             }
             else if(semiFound) {
-                unitHolder.pop_back();
+                unitHolder.erase((unitHolder.begin() + unitHolder.size() - 1));
                 result.push_back(unitHolder);
                 result.push_back(";");
             }
