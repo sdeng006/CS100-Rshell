@@ -1,6 +1,6 @@
 CC= g++
 
-CC_FLAGS = -Wall -Werror -ansi -pedantic -std=c++11
+CC_FLAGS = -Wall -Werror -ansi -pedantic -std=c++0x
 
 all:
 	mkdir -p ./bin
