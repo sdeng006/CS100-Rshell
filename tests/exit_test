@@ -1,6 +1,0 @@
-echo exit testing
-echo
-pwd || exit
-ls || exit
-echo one && echo two && exit
-exit
