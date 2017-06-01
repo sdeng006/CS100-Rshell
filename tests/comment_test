@@ -1,8 +1,0 @@
-echo comment test
-echo "echo hello world #echo comment"
-#echo "echo hello world || git status && ls -a; #echo comment"
-#echo "ls -a; #comment echo world; git status "
-#echo "ls -a; echo hello && mkdir test && echo world;#echo comment"
-#echo "echo hello || echo world && git status#echo comment"
-echo only two line shown in this test, leaving
-exit
