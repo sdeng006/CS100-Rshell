@@ -1,0 +1,6 @@
+(echo A && echo B) || echo hello #(echo C && echo D)
+#echo A && (echo B || echo C)
+ls -test || (echo hello && echo world)
+(echo hello && exit) || echo Hi
+echo hello world #&& (echo read && exit)
+echo hello #(echo hi)

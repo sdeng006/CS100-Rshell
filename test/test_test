@@ -1,0 +1,11 @@
+test -e rshell
+test -f rshell
+test -d rshell
+test tests
+[-d tests]
+[-f tests]
+[-e tests]
+[main.cpp]
+[Command.cpp] && echo A
+echo A || [-d tests]
+
