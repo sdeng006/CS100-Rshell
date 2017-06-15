@@ -192,19 +192,21 @@ vector<string> makeUnity (const vector<string>& seperated) {
                     result.push_back(unitHolder);       //command cat, sort, etc
                     unitHolder = BLANK;
                 }
-                unsigned j = i+1;
+                unsigned Index = i + 1;
                 string pipes;
                 result.push_back("<");
-                while(j < seperated.size() ) {
-                    bool ccc = seperated.at(j) == ">" || seperated.at(j) == ">>" || seperated.at(j) == "&&" || seperated.at(j) == "||" || seperated.at(j) == ";";
+                while(Index < seperated.size() ) {
+                    bool ccc = seperated.at(Index) == ">" || seperated.at(Index) == ">>" || seperated.at(Index) == "&&" || seperated.at(Index) == "||" || seperated.at(Index) == ";";
                     if(ccc) {
                         result.push_back(pipes);
-                        result.push_back(seperated.at(j));
-                        i = j;
+                        result.push_back(seperated.at(Index));
+                        
+                        // i is located at Index!
+                        i = Index;
                         break;
                     }
-                    pipes = pipes + seperated.at(j);
-                    j++;
+                    pipes = pipes + seperated.at(Index);
+                    Index++;
                 }
             }
             else {
@@ -231,10 +233,10 @@ vector<string> makeUnity (const vector<string>& seperated) {
         }
     }
     
-    cout << "testing display:" << endl;
-    for(int i = 0; i < result.size(); i++) {
-        cout << result.at(i) << endl;
-    }
+    // cout << "testing display:" << endl;
+    // for(int i = 0; i < result.size(); i++) {
+    //     cout << result.at(i) << endl;
+    // }
     
     return result;
 }
@@ -390,77 +392,48 @@ Base* buildtree(const vector<string>& vCommand) {
                 root = new Test(vCommand.at(i));
             }
             
-            // fix me
-            // redirection case ===================================================================================================================
-            else if((i + 2 < vCommand.size() ) && (vCommand.at(i+1) == ">" || vCommand.at(i+1) == ">>" || vCommand.at(i+1) == "<" ) )   //redirection
-            {
-                if(vCommand.at(i+1) == "<")                                                                              //input redirection
-                {
-                    if(i+4 < vCommand.size())
-                    {
-                        if(i<vCommand.size()-4 && vCommand.at(i+3) == ">>")   //type 5
-                        {
-                            /*
-                            vCommand.at(i)       = command
-                            vCommand.at(i+1)     = '<'
-                            vCommand.at(i+2)     = command2
-                            vCommand.at(i+3)     = ">>"
-                            vCommand.at(i+4)     = fileName
-                            */
-                            ReCommand* c5 = new ReCommand(vCommand.at(i), vCommand.at(i+2),vCommand.at(i+4).c_str(),5);
-                            root = c5;
-                            i +=4;
+            // redirection case 
+            else if((vCommand.at(i+1) == ">" || vCommand.at(i+1) == ">>" || vCommand.at(i+1) == "<" ) && ((i + 2) < vCommand.size() )) {
+                if(vCommand.at(i + 1) == "<") {
+                    unsigned size = vCommand.size();
+                    if(size > (i + 4)) {
+                        // case five and four
+                        if(i < vCommand.size() - 4 && (vCommand.at(i+3) == ">>"|| vCommand.at(i+3) == ">")) {
+                            if(vCommand.at(i+3) == ">>") {
+                                root = new ReCommand(vCommand.at(i), vCommand.at(i+2), vCommand.at(i+4).c_str(), 5);
+                            }
+                            else {
+                                root = new ReCommand(vCommand.at(i), vCommand.at(i+2), vCommand.at(i+4).c_str(), 4);
+                            }
+                            i++;
+                            i = i + 3;
                         }
-                        else if(i<vCommand.size()-4 && vCommand.at(i+3) == ">")   //type 4
-                        {
-                            ReCommand* c4 = new ReCommand(vCommand.at(i), vCommand.at(i+2),vCommand.at(i+4).c_str(),4);
-                            root = c4;
-                            i +=4;
-                        }
-                        else       //type 1
-                        {
-                            /*
-                                vCommand.at(i)       = command
-                                vCommand.at(i+1)     = '<' 
-                                vCommand.at(i+2)     = fileName
-                            */
-                            ReCommand* c1 = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),1);
-                            root = c1;
-                            i+=2;
+                
+                // case one
+                        else {
+                            root = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),1);
+                            i = i + 2;
                         }
                     }
-                    else       //type 1
-                    {
-                        /*
-                            vCommand.at(i)       = command
-                            vCommand.at(i+1)     = '<' 
-                            vCommand.at(i+2)     = fileName
-                        */
-                        ReCommand* c1 = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),1);
-                        root = c1;
-                        i+=2;
+                    else {
+                        root = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),1);
+                        i = i + 2;
                     }
                 }
-                /*
-                    vCommand.at(i)       = command
-                    vCommand.at(i+1)     = '>' or ">>"
-                    vCommand.at(i+2)     = fileName
-                */
-                else if(vCommand.at(i+1) == ">")         //type 2
-                {
-                    ReCommand* c2 = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),2);
-                    root = c2;
-                    i+=2;
+                // below
+                
+                // case three
+                else if(vCommand.at(i+1) == ">>") {
+                    root = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),3);
+                    i = i + 2;
                 }
-                else if(vCommand.at(i+1) == ">>")        //type 3
-                {
-                    ReCommand* c3 = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),3);
-                    root = c3;
-                    i+=2;
+                
+                // case two
+                else if(vCommand.at(i+1) == ">") {
+                    root = new ReCommand(vCommand.at(i),vCommand.at(i+2).c_str(),2);
+                    i = i + 2;
                 }
             }
-            // redirection case ===================================================================================================================
-            // fix me
             
             // normal command case
             else {
