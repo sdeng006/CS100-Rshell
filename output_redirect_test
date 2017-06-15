@@ -1,6 +1,0 @@
-cat Base.h > new1
-cat Base.h > new1 && cat Base.h > new2
-cat new1 > new2
-cat new1 > new2 && echo hello
-echo hello && cat Base.h > new.h
-echo hello || cat Base.h > none
