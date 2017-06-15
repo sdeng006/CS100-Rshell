@@ -1,0 +1,6 @@
+ls | less
+cat Base.h > new | tr A-Z a-z
+cat Base.h > new | tr A-Z a-z
+ls > new | less
+cat < Base.h | tr A-Z a-z | tee newOutputFile1
+
