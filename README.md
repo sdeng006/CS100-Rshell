@@ -49,7 +49,6 @@ Hui Gu (Whitney) - hgu004@ucr.edu
     - Within the bracket, if there is semicolon in the bracket, then sometimes the program would crush.
     
     - This program could only read 300 words for the command.
-    
-    - When using redirecting, we cannot using the connector such as && and || together.
+    - When using the redirecting feature, we cannot using the connector such as && and || together.
     
     
