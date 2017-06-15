@@ -5,5 +5,5 @@ cat < Base.h && cat < Command.h
 echo Base or Command
 cat < Base.h || cat < Command.h
 cat < Base.h && exit
-exit && cat < Base.h
+exit #&& cat < Base.h
 
