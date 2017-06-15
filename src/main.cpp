@@ -12,7 +12,7 @@
 #include <cstring>
 #include <cstdio>
 
-// open (redirect)
+// new library added
 #include <fstream>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -21,7 +21,7 @@
 #include "Command.cpp"
 #include "Connector.cpp"
 #include "Test.cpp"
-#include "ReCommand.cpp"
+#include "Redirection.cpp"
 
 using namespace std;
 
@@ -182,47 +182,39 @@ vector<string> makeUnity (const vector<string>& seperated) {
             unitHolder = BLANK;
         }
         
-        // fix me here
-        //ReCommand < , > , >> ==================================================================================================
-        else if(seperated.at(i) ==  "<" || seperated.at(i) ==  ">" || seperated.at(i) ==  ">>")
-        {
-            if(seperated.at(i) ==  "<")
-            {
-                unsigned j = i+1;
-                
-                if(!unitHolder.empty()) 
-                {
+        // New added
+        // redirect case
+        // < , > , and >>
+        else if(seperated.at(i) ==  "<" || seperated.at(i) ==  ">" || seperated.at(i) ==  ">>") {
+            bool cc = (seperated.at(i) ==  "<");
+            if(cc) {
+                if(unitHolder != BLANK) {
                     result.push_back(unitHolder);       //command cat, sort, etc
-                    unitHolder.clear();
+                    unitHolder = BLANK;
                 }
-                string pipes = "";
+                unsigned j = i+1;
+                string pipes;
                 result.push_back("<");
-                while(j < seperated.size() )                     //search for mirror >
-                {
-                    if(seperated.at(j) == ">" || seperated.at(j) == ">>" 
-                    || seperated.at(j) == "&&" || seperated.at(j) == "||" || seperated.at(j) == ";" )
-                    {
+                while(j < seperated.size() ) {
+                    bool ccc = seperated.at(j) == ">" || seperated.at(j) == ">>" || seperated.at(j) == "&&" || seperated.at(j) == "||" || seperated.at(j) == ";";
+                    if(ccc) {
                         result.push_back(pipes);
                         result.push_back(seperated.at(j));
                         i = j;
                         break;
                     }
-                    pipes += seperated.at(j);
+                    pipes = pipes + seperated.at(j);
                     j++;
                 }
             }
-            else
-            {
-                if(!unitHolder.empty()) 
-                {
+            else {
+                if(unitHolder != BLANK) {
                     result.push_back(unitHolder);
-                    unitHolder.clear();
+                    unitHolder = BLANK;
                 }
                 result.push_back(seperated.at(i));
             }
         }
-        //ReCommand < , > , >> ==================================================================================================
-        // fix me here
         
         // end command case 
         // make sure to push back it!
@@ -239,10 +231,10 @@ vector<string> makeUnity (const vector<string>& seperated) {
         }
     }
     
-    // cout << "testing display:" << endl;
-    // for(int i = 0; i < result.size(); i++) {
-    //     cout << result.at(i) << endl;
-    // }
+    cout << "testing display:" << endl;
+    for(int i = 0; i < result.size(); i++) {
+        cout << result.at(i) << endl;
+    }
     
     return result;
 }
