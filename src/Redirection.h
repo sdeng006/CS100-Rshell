@@ -3,7 +3,7 @@
 
 #include "Base.h" 
 
-// Redirection command: input and output
+// Redirection is a kind of command: input and output
 // this one hold the <, >, and >>
 class ReCommand : public Base {
     private:
