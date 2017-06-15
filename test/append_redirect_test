@@ -1,0 +1,5 @@
+cat Base.h > new
+cat Base.h >> new
+cat Command.h >> new
+cat Base.h > new && cat Command.h >> new
+cat Base.h > new || cat Base.h >> new
