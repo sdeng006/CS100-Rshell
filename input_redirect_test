@@ -1,9 +1,0 @@
-echo Base.h
-cat < Base.h
-echo Base & Command
-cat < Base.h && cat < Command.h
-echo Base or Command
-cat < Base.h || cat < Command.h
-cat < Base.h && exit
-exit && cat < Base.h
-
