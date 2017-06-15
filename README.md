@@ -50,3 +50,6 @@ Hui Gu (Whitney) - hgu004@ucr.edu
     
     - This program could only read 300 words for the command.
     
+    - When using redirecting, we cannot using the connector such as && and || together.
+    
+    
