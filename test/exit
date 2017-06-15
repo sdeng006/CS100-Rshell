@@ -1,5 +1,0 @@
-test -f rshell && exit
-exit || (echo hello && echo A)
-[-f tests] && exit
-test -e rshell; exit
-echo A && (echo B || echo C) && exit
